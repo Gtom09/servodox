@@ -1,11 +1,15 @@
 # Step 1: Build the application
-FROM maven:3.8.6-jdk-17 AS build
+FROM ubuntu:latest AS build
 
-# Copy the project files into the container
+# Update apt-get and install openjdk-17
+RUN apt-get update && apt-get install openjdk-17-jdk -y
+
+# Copy project files into the container
 COPY . .
 
-# Build the Spring Boot application with Maven
-RUN mvn clean package -DskipTests
+
+# Build the Spring Boot application with Gradle (assuming you're using Gradle)
+RUN ./gradlew bootJar --no-daemon
 
 # Step 2: Run the application
 FROM openjdk:17-jdk-slim
@@ -14,7 +18,7 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
 # Copy the built JAR file from the build stage
-COPY --from=build /target/your-app-name-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /build/libs/PolicyCalculator-0.0.1-SNAPSHOT.jar app.jar
 
 # Entry point to run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
