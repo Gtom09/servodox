@@ -1,5 +1,12 @@
 # Step 1: Build the application
-FROM maven:3.8.6-openjdk-17-slim AS build
+FROM openjdk:17-jdk-slim AS build
+
+# Install Maven
+RUN apt-get update && apt-get install -y wget unzip \
+    && wget https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.zip -P /tmp \
+    && unzip /tmp/apache-maven-3.8.6-bin.zip -d /opt \
+    && rm /tmp/apache-maven-3.8.6-bin.zip \
+    && ln -s /opt/apache-maven-3.8.6/bin/mvn /usr/local/bin/mvn
 
 # Set the working directory
 WORKDIR /app
