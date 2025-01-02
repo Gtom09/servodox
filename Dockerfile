@@ -8,8 +8,8 @@ RUN apt-get update && apt-get install openjdk-17-jdk -y
 COPY . .
 
 
-# Build the Spring Boot application with Gradle (assuming you're using Gradle)
-RUN ./gradlew bootJar --no-daemon
+# Build the Spring Boot application with Maven
+RUN mvn clean package -DskipTests
 
 # Step 2: Run the application
 FROM openjdk:17-jdk-slim
