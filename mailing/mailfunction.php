@@ -11,7 +11,7 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
     $mail = new PHPMailer(true);  // PHPMailer with exception handling
     try {
         // Set up PHPMailer to use SMTP
-        $mail->isSMTP();
+        $mail->isSMTP(0);
 
         // Enable SMTP debug output (you can disable this once the issue is resolved)
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
