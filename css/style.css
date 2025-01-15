@@ -1,5 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
 
+
+
+.coming-soon-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .coming-soon-ribbon {
+    position: absolute;
+    top: 35px;
+    right: -10px;
+    background: rgba(255, 0, 0, 0.7); /* Red with transparency */
+    color: white;
+    font-weight: bold;
+    padding: 7px 14px;
+    transform: rotate(45deg);
+    z-index: 10;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 16px;
+  }
+  
+  .content {
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  
 *{
     font-family: 'Poppins', sans-serif;
     margin: 0;
