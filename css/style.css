@@ -109,39 +109,14 @@ body{
 }
 
 .header .logo img {
-    width: auto;         /* Maintain the original width of the image */
-    height: 12rem;       /* Keep the original height on larger screens */
-    position: relative;  /* Relative positioning */
-    top: 0;              /* No vertical displacement */
-    left: -17%;          /* Maintain the original left displacement */
-    filter: invert(1);   /* Invert colors (for dark backgrounds) */
-    max-width: 100%;     /* Ensure the image scales within its container */
+    width: 100%;
+    height: 12rem;
+    justify-content: space-between;
+    position: relative; 
+    top: 0;
+    left: -17%;  
+    filter: invert(1);
 }
-
-/* For larger screens (laptop/desktops), keep the same size */
-@media (max-width: 1200px) {
-    .header .logo img {
-        height: 10rem;   /* Slightly smaller logo for larger screens */
-        left: -10%;      /* Adjust the left positioning to keep the logo centered */
-    }
-}
-
-/* For tablet-sized screens */
-@media (max-width: 768px) {
-    .header .logo img {
-        height: 8rem;    /* Further reduce the logo size for tablets */
-        left: -5%;       /* Adjust left positioning */
-    }
-}
-
-/* For mobile-sized screens */
-@media (max-width: 480px) {
-    .header .logo img {
-        height: 6rem;    /* Even smaller logo for mobile devices */
-        left: 0;         /* Remove left offset for mobile for better alignment */
-    }
-}
-
 
 
 .header .navbar ul{
