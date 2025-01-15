@@ -21,19 +21,17 @@
                 <li>Message: $message</li>
              </ul>";
 
-    // Prepare the recipient emails (comma separated)
-    $recipient_emails = "gebin092002@gmail.com;  // Multiple recipients
+    // Prepare the recipient email (single recipient)
+    $recipient_email = "gebin092002@gmail.com";  // Single recipient
 
     // Set headers for email
     $headers = "From: $email\r\n";
     $headers .= "Reply-To: $email\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-    // Add the 'To' header manually if needed (optional here, as it's included in mail())
-    $headers .= "To: $recipient_emails\r\n"; 
 
-    // Call the mail function directly to send email
-    $status = mail($recipient_emails, "Company", $body, $headers);  // Send the email to the recipients
+    // Call the mail function directly to send the email
+    $status = mail($recipient_email, "Company", $body, $headers);  // Send the email to the single recipient
 
     // Display a confirmation message based on the result
     if ($status) {
