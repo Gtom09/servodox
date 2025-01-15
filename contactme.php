@@ -21,11 +21,17 @@
                 <li>Message: $message</li>
              </ul>";
 
-    // Add multiple recipients
-    $recipient_email = "gebin092002@gmail.com, khankahan979@gmail.com";  // Multiple recipients
+    // Prepare the recipient emails
+    $recipient_emails = "gebin092002@gmail.com, khankahan979@gmail.com";  // Multiple recipients
+
+    // Set headers for email
+    $headers = "From: $email\r\n";
+    $headers .= "Reply-To: $email\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
     // Call the mailfunction to send the email
-    $status = mailfunction($recipient_email, "Company", $body);  // Send the email to the recipients
+    $status = mail($recipient_emails, "Company", $body, $headers);  // Send the email to the recipients
 
     // Display a confirmation message based on the result
     if ($status) {
