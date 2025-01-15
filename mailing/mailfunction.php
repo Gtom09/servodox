@@ -3,50 +3,61 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-require('./vendor/autoload.php');
+require './vendor/autoload.php';
 require 'mailingvariables.php';
 
 function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $attachment = false){
 
-    $mail = new PHPMailer();
-    $mail->isSMTP();
+    $mail = new PHPMailer(true);  // Use true to enable exceptions for error handling
+    try {
+        // Set up PHPMailer to use SMTP
+        $mail->isSMTP();
 
-    //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        // Enable SMTP debug output (uncomment this line for debugging)
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
 
-    $mail->Host = $GLOBALS['mail_host'];
+        // SMTP server settings
+        $mail->Host = $GLOBALS['mail_host'];  // e.g., 'smtp.gmail.com'
+        $mail->Port = $GLOBALS['mail_port'];  // Port number (587 for TLS, 465 for SSL)
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Use TLS encryption
+        $mail->SMTPAuth = true;
 
-    $mail->Port = $GLOBALS['mail_port'];
+        // SMTP authentication
+        $mail->Username = $GLOBALS['mail_sender_email'];  // Your email username
+        $mail->Password = $GLOBALS['mail_sender_password'];  // Your email password or app password
 
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        // Set the "From" address
+        $mail->setFrom($GLOBALS['mail_sender_email'], $GLOBALS['mail_sender_name']);
 
-    $mail->SMTPAuth = true;
+        // Add the recipient email address
+        $mail->addAddress($mail_reciever_email, $mail_reciever_name);
 
-    $mail->Username = $GLOBALS['mail_sender_email'];
+        // Email subject
+        $mail->Subject = 'Someone Contacted You!';
 
-    $mail->Password = $GLOBALS['mail_sender_password'];
+        // Set email format to HTML
+        $mail->isHTML(true);
+        $mail->msgHTML($mail_msg);  // HTML message body
 
-    $mail->setFrom($GLOBALS['mail_sender_email'], $GLOBALS['mail_sender_name']);
+        // Attach file if provided
+        if ($attachment !== false) {
+            $mail->AddAttachment($attachment);
+        }
 
-    $mail->addAddress($mail_reciever_email, $mail_reciever_name);
+        // Alternative plain text body (for non-HTML email clients)
+        $mail->AltBody = 'This is a plain-text message body';
 
-    $mail->Subject = 'Someone Contacted You!';
+        // Send the email and check if successful
+        if ($mail->send()) {
+            return true;
+        } else {
+            return false;
+        }
 
-    $mail->isHTML($isHtml = true );
-
-    $mail->msgHTML($mail_msg);
-
-
-    if($attachment !== false){
-        $mail->AddAttachment($attachment);
-    }
-    
-    $mail->AltBody = 'This is a plain-text message body';
- 
-    if (!$mail->send()) {
+    } catch (Exception $e) {
+        // Catch any errors and return false
+        echo 'Mailer Error: ' . $mail->ErrorInfo;  // Print the error message
         return false;
-    } else {
-        return true;
     }
 }
-
 ?>
