@@ -1,4 +1,4 @@
-<?php   
+<?php
     require("./mailing/mailfunction.php");
 
     // Sanitize form inputs to prevent security issues (XSS, injections)
@@ -30,7 +30,7 @@
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-    // Call the mailfunction to send the email
+    // Call the mail function directly to test
     $status = mail($recipient_emails, "Company", $body, $headers);  // Send the email to the recipients
 
     // Display a confirmation message based on the result
