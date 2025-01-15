@@ -21,7 +21,7 @@
                 <li>Message: $message</li>
              </ul>";
 
-    // Prepare the recipient emails
+    // Prepare the recipient emails (comma separated)
     $recipient_emails = "gebin092002@gmail.com, gebin6361884365@gmail.com";  // Multiple recipients
 
     // Set headers for email
@@ -29,8 +29,10 @@
     $headers .= "Reply-To: $email\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+    // Add the 'To' header manually if needed (optional here, as it's included in mail())
+    $headers .= "To: $recipient_emails\r\n"; 
 
-    // Call the mail function directly to test
+    // Call the mail function directly to send email
     $status = mail($recipient_emails, "Company", $body, $headers);  // Send the email to the recipients
 
     // Display a confirmation message based on the result
