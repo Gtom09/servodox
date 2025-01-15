@@ -14,7 +14,7 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
         $mail->isSMTP();
 
         // Enable SMTP debug output (uncomment this line for debugging)
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Show server responses
 
         // SMTP server settings
         $mail->Host = $GLOBALS['mail_host'];  // e.g., 'smtp.gmail.com'
