@@ -11,10 +11,10 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
     $mail = new PHPMailer(true);  // PHPMailer with exception handling
     try {
         // Set up PHPMailer to use SMTP
-        $mail->isSMTP(0);
+        $mail->isSMTP();
 
         // Enable SMTP debug output (you can disable this once the issue is resolved)
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
+         $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Show server responses
 
         // Set the SMTP server and port
         $mail->Host = $GLOBALS['mail_host'];  // Use the mail host from mailingvariables.php (e.g., 'smtp.gmail.com')
