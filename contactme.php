@@ -1,4 +1,4 @@
-<?php
+<?php   
     require("./mailing/mailfunction.php");
 
     // Sanitize form inputs to prevent security issues (XSS, injections)
@@ -21,17 +21,11 @@
                 <li>Message: $message</li>
              </ul>";
 
-    // Prepare the recipient email (single recipient)
-    $recipient_email = "gebin092002@gmail.com";  // Single recipient
+    // Replace "" with the actual recipient email (e.g., your company's email)
+    $recipient_email = "gebin092002@gmail.com";  // Replace with your email address
 
-    // Set headers for email
-    $headers = "From: $email\r\n";
-    $headers .= "Reply-To: $email\r\n";
-    $headers .= "MIME-Version: 1.0\r\n";
-    $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
-
-    // Call the mail function directly to send the email
-    $status = mail($recipient_email, "Company", $body, $headers);  // Send the email to the single recipient
+    // Call the mailfunction to send the email
+    $status = mailfunction($recipient_email, "Company", $body);  // Send the email to the recipient
 
     // Display a confirmation message based on the result
     if ($status) {
