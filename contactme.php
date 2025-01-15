@@ -22,7 +22,7 @@
              </ul>";
 
     // Prepare the recipient emails (comma separated)
-    $recipient_emails = "gebin092002@gmail.com, gebin6361884365@gmail.com";  // Multiple recipients
+    $recipient_emails = "gebin092002@gmail.com;  // Multiple recipients
 
     // Set headers for email
     $headers = "From: $email\r\n";
