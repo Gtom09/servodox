@@ -4,32 +4,32 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
 require './vendor/autoload.php';
-require 'mailingvariables.php';  // Make sure this path is correct and the file is configured as shown above.
+require 'mailingvariables.php';
 
 function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $attachment = false){
 
-    $mail = new PHPMailer(true);  // PHPMailer with exception handling
+    $mail = new PHPMailer(true);  // Use true to enable exceptions for error handling
     try {
         // Set up PHPMailer to use SMTP
         $mail->isSMTP();
 
-        // Enable SMTP debug output (you can disable this once the issue is resolved)
-        $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Show server responses
+        // Enable SMTP debug output (uncomment this line for debugging)
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
 
-        // Set the SMTP server and port
-        $mail->Host = $GLOBALS['mail_host'];  // Use the mail host from mailingvariables.php (e.g., 'smtp.gmail.com')
-        $mail->Port = $GLOBALS['mail_port'];  // Use the port from mailingvariables.php (e.g., 587 for TLS)
+        // SMTP server settings
+        $mail->Host = $GLOBALS['mail_host'];  // e.g., 'smtp.gmail.com'
+        $mail->Port = $GLOBALS['mail_port'];  // Port number (587 for TLS, 465 for SSL)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Use TLS encryption
         $mail->SMTPAuth = true;
 
         // SMTP authentication
-        $mail->Username = $GLOBALS['mail_sender_email'];  // Your email address
-        $mail->Password = $GLOBALS['mail_sender_password'];  // Your app password for Gmail
+        $mail->Username = $GLOBALS['mail_sender_email'];  // Your email username
+        $mail->Password = $GLOBALS['mail_sender_password'];  // Your email password or app password
 
         // Set the "From" address
         $mail->setFrom($GLOBALS['mail_sender_email'], $GLOBALS['mail_sender_name']);
 
-        // Add the recipient email address (single recipient)
+        // Add the recipient email address
         $mail->addAddress($mail_reciever_email, $mail_reciever_name);
 
         // Email subject
@@ -55,8 +55,8 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
         }
 
     } catch (Exception $e) {
-        // Catch any errors and print the error message
-        echo 'Mailer Error: ' . $mail->ErrorInfo;  // Display the error message
+        // Catch any errors and return false
+        echo 'Mailer Error: ' . $mail->ErrorInfo;  // Print the error message
         return false;
     }
 }
