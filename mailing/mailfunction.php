@@ -17,14 +17,14 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;  // Show server responses
 
         // SMTP server settings
-        $mail->Host = $GLOBALS['mail_host'];  // e.g., 'smtp.gmail.com'
-        $mail->Port = $GLOBALS['mail_port'];  // Port number (587 for TLS, 465 for SSL)
+        $mail->Host = $GLOBALS['smtp.gmail.com'];  // e.g., 'smtp.gmail.com'
+        $mail->Port = $GLOBALS['587'];  // Port number (587 for TLS, 465 for SSL)
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  // Use TLS encryption
         $mail->SMTPAuth = true;
 
         // SMTP authentication
-        $mail->Username = $GLOBALS['mail_sender_email'];  // Your email username
-        $mail->Password = $GLOBALS['mail_sender_password'];  // Your email password or app password
+        $mail->Username = $GLOBALS['gebintom'];  // Your email username
+        $mail->Password = $GLOBALS['Gebintom@2002'];  // Your email password or app password
 
         // Set the "From" address
         $mail->setFrom($GLOBALS['mail_sender_email'], $GLOBALS['mail_sender_name']);
