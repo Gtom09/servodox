@@ -21,11 +21,11 @@
                 <li>Message: $message</li>
              </ul>";
 
-    // Replace "" with the actual recipient email (e.g., your company's email)
-    $recipient_email = "gebin092002@gmail.com";  // Replace with your email address
+    // Add multiple recipients
+    $recipient_email = "gebin092002@gmail.com, khankahan979@gmail.com";  // Multiple recipients
 
     // Call the mailfunction to send the email
-    $status = mailfunction($recipient_email, "Company", $body);  // Send the email to the recipient
+    $status = mailfunction($recipient_email, "Company", $body);  // Send the email to the recipients
 
     // Display a confirmation message based on the result
     if ($status) {
