@@ -14,7 +14,7 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
         $mail->isSMTP();
 
         // Enable SMTP debug output (you can disable this once the issue is resolved)
-         $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Show server responses
+        $mail->SMTPDebug = SMTP::DEBUG_OFF;  // Show server responses
 
         // Set the SMTP server and port
         $mail->Host = $GLOBALS['mail_host'];  // Use the mail host from mailingvariables.php (e.g., 'smtp.gmail.com')
@@ -29,7 +29,7 @@ function mailfunction($mail_reciever_email, $mail_reciever_name, $mail_msg, $att
         // Set the "From" address
         $mail->setFrom($GLOBALS['mail_sender_email'], $GLOBALS['mail_sender_name']);
 
-        // Add the recipient email address
+        // Add the recipient email address (single recipient)
         $mail->addAddress($mail_reciever_email, $mail_reciever_name);
 
         // Email subject
