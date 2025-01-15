@@ -108,34 +108,15 @@ body{
     position: fixed;
 }
 
-/* Make the logo responsive */
 .header .logo img {
-    max-width: 100%;    /* Ensure the logo width is flexible and scales within its container */
-    height: auto;       /* Maintain the aspect ratio of the logo */
-    filter: invert(1);  /* Invert colors for dark backgrounds */
+    width: auto;         /* Maintain the original width of the image */
+    height: 12rem;       /* Keep the original height on larger screens */
+    position: relative;  /* Relative positioning */
+    top: 0;              /* No vertical displacement */
+    left: -17%;          /* Maintain the original left displacement */
+    filter: invert(1);   /* Invert colors (for dark backgrounds) */
+    max-width: 100%;     /* Ensure the image scales within its container */
 }
-
-/* Adjust logo size for larger screens */
-@media (max-width: 1200px) {
-    .header .logo img {
-        max-width: 200px; /* Reduce the size for larger screens (like laptops) */
-    }
-}
-
-/* Adjust for tablet and medium-sized screens */
-@media (max-width: 768px) {
-    .header .logo img {
-        max-width: 150px; /* Smaller logo size on tablet-sized screens */
-    }
-}
-
-/* Adjust for mobile devices */
-@media (max-width: 480px) {
-    .header .logo img {
-        max-width: 120px; /* Even smaller logo size on mobile */
-    }
-}
-
 
 
 .header .navbar ul{
